@@ -1,6 +1,6 @@
 #!/bin/bash
-###
-time=date +"%b %d"
+###=
+time=`date +"%b %d"`
 #show log dir
 ls -la /var/log > ~/for_syslog/show_dir_log.log
 #checking file availability
@@ -17,3 +17,4 @@ if [ -f $check ];
   	echo "File not found"
 fi
 ###
+find ~/for_syslog -mmin +10 -type f -exec rm -fv {} \;
