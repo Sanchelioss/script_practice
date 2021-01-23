@@ -1,20 +1,19 @@
 #!/bin/bash
-
-data=date +"%b %d"
+###
+time=date +"%b %d"
 #show log dir
-ls -la /var/log
+ls -la /var/log > ~/for_syslog/show_dir_log.log
 #checking file availability
 check=/var/log/syslog
 if [ -f $check ];
   then
-	echo "################### last 10 lines"
-	tail $check
-	echo "################### first 10 lines"
-	head $check
-	echo "################### first 10 lines today"
-	head $check | grep -n "$data"
-	echo "################### last 10 lines of crontab"
-	tail $check | grep crontab
+	echo "starting file operations"
+	tail $check > ~/for_syslog/last_10_lines_in_syslog.log
+	head $check > ~/for_syslog/first_10_line_in_syslog.log
+	head $check | grep -n "$time" > ~/for_syslog/first_10_lines_today_in_syslog.log
+	tail $check | grep crontab > ~/for_syslog/last_10_lines_of_crontab_in_syslog.log
+	echo "done"
   else
   	echo "File not found"
 fi
+###
