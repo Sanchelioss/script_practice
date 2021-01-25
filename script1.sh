@@ -18,7 +18,7 @@ if [ -f $LOG_FILE ];
 	echo "starting file operations"
 	tail $LOG_FILE > ~/for_syslog/last_10_lines_in_syslog.log
 	head $LOG_FILE > ~/for_syslog/first_10_line_in_syslog.log
-	head $LOG_FILE | grep -n "$time" > ~/for_syslog/first_10_lines_today_in_syslog.log
+	head $LOG_FILE | grep -n "FORMATTED_DATE" > ~/for_syslog/first_10_lines_today_in_syslog.log
 	tail $LOG_FILE | grep crontab > ~/for_syslog/last_10_lines_of_crontab_in_syslog.log
 	echo "done"
   else
