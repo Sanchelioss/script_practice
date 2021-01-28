@@ -2,18 +2,19 @@
 
 
 INPUT_ARRAY=("$@")
-
+INPUT_ARRAY_LEN="${#INPUT_ARRAY[@]}"
 ###sorting by variable value
 get_parsed_array () {
 	VALUE_LIMIT=7
-	for i in ${INPUT_ARRAY[@]}; do
-		if [[ $i -ge $VALUE_LIMIT ]]; then
-			OUTPUT_ARRAY+=($i)
+    i=0
+	while [[ $i -lt ${INPUT_ARRAY_LEN} ]]; do
+		if [[ ${INPUT_ARRAY[$i]} -gt $VALUE_LIMIT ]]; then
+			OUTPUT_ARRAY+=(${INPUT_ARRAY[$i]})
 	    fi
+        (( i++ ))
 	done
 }
-get_parsed_array ${INPUT_ARRAY[@]}
-
+get_parsed_array ${INPUT_ARRAY_LEN[@]}
 ###sort ascending
 get_sort_array () {
 OUTPUT_ARRAY_LEN="${#OUTPUT_ARRAY[@]}"
