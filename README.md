@@ -1,1 +1,1 @@
-# script_practice
+# training repo
