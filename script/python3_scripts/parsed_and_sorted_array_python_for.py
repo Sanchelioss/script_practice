@@ -6,17 +6,17 @@ def get_parsed_array(input_array):
 
 	for i in input_array:
 		try:
-			a = int(i)
+			array_value_to_integer = int(i)
 
-			if (a > value_limit):
-				output_array.append(a)
+			if (array_value_to_integer > value_limit):
+				output_array.append(array_value_to_integer)
 		except:
 			print(f'element {i} is string')
 
 	return output_array
 
 
-def get_sort_array(output_array):
+def get_sorted_array(output_array):
 	output_array_len = len(output_array)
 
 	for i in range (output_array_len):
@@ -32,6 +32,6 @@ input_array = list(input('Введите значения массива чер�
 
 output_array = get_parsed_array(input_array)
 
-sort_array = get_sort_array(output_array)
+sorted_array = get_sorted_array(output_array)
 
-print(sort_array)
+print(sorted_array)
