@@ -1,0 +1,21 @@
+[Unit]
+Description=pogoda
+After=multi-user.target
+After=syslog.target
+After=network.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/alex.sychevskiy/script_practice/scripts/python3_scripts/API_training.py
+StandardInput=tty-force
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=pogoda
+Restart=on-success
+RestartSec=60s
+
+User=alex.sychevskiy
+
+[Install]
+WantedBy=multi-user.target
