@@ -1,19 +1,21 @@
 
-def get_weather_api():
+def get_weather_api_responce():
 	import json
 	import requests
-	request_to_API = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Hrodna&appid=b6627e1c2f78708e4c3b1abed614bfcd')
-	convert_to_json = request_to_API.json()
-	return convert_to_json
+	api_responce = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Hrodna&appid=b6627e1c2f78708e4c3b1abed614bfcd')
+	json_format = api_responce.json()
+	return json_format
 
 
-def get_city_weather(convert_to_json):
-	print("city: " + convert_to_json['name'])
-	print("temperature: " + str(int(convert_to_json['main']['temp'] - 273)) + "C")
-	print("weather: " + convert_to_json['weather'][0]['main'])
-	print("humidity: " + str(convert_to_json['main']['humidity']) + "%")
+def get_city_weather(json_format):
+	city = str("city: " + json_format['name'])
+	temperature = ("temperature: " + str(int(json_format['main']['temp'] - 273)) + "C")
+	weather = ("weather: " + json_format['weather'][0]['main'])
+	humidity = ("humidity: " + str(json_format['main']['humidity']) + "%")
+	return city, temperature, weather, humidity;
 
+json_format = get_weather_api_responce()
 
-api = get_weather_api()
+result = get_city_weather(json_format)
 
-show_weather = get_city_weather(api)
+print(f'{result[0]}', '\n' f'{result[1]}', '\n' f'{result[2]}', '\n' f'{result[3]}')
