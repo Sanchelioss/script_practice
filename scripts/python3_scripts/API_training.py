@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
+from requests import get
 
 
 def get_weather_api_response(link):
-	import requests
-	import json
+
 	try:
-		api_responce = requests.get(link)
+		api_responce = get(link)
 		if api_responce:
 			responce_json = api_responce.json()
 			return responce_json
