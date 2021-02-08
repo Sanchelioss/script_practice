@@ -1,12 +1,17 @@
 #!/usr/bin/python3
 
-import requests
 
-def get_weather_api_response(api_responce):
+
+def get_weather_api_response(link):
+	import requests
 	import json
-	if api_responce:
-		responce_json = api_responce.json()
-		return responce_json
+	try:
+		api_responce = requests.get(link)
+		if api_responce:
+			responce_json = api_responce.json()
+			return responce_json
+	except:
+		return None
 
 
 def get_city_weather(responce_json):
@@ -19,15 +24,8 @@ def get_city_weather(responce_json):
 	return city, temperature_celsiy, weather, humidity;
 
 
-responce_json = None
-
-
-try:
-	api_responce = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Hrodna&appid=b6627e1c2f78708e4c3b1abed614bfcd')
-	responce_json = get_weather_api_response(api_responce)
-except:
-	print("Link is invalid")
-
+link = 'http://api.openweathermap.org/data/2.5/weather?q=Hrodna&appid=b6627e1c2f78708e4c3b1abed614bfcd'
+responce_json = get_weather_api_response(link)
 
 
 if responce_json is None:
